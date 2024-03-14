@@ -1,0 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@supports (font-variation-settings: normal) {
+  :root { font-family: InterVariable, sans-serif; }
+}
+
+/* Definir variables en CSS. */
+:root {
+  --black-color: #101010;
+  --secondary-black-color: #1a1a1a;
+  --secondary-color: #7e7e7e;
+  --white-color: #f5f5f5;
+  --primary-color: #4ef81b;
+  --primary-hover-color: #80ff49;
+  --danger: #ff6565;
+}
+
+body {
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  background-color: var(--black-color);
+  color: var(--white-color);
+  height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+}
+
+p {
+  color: var(--secondary-color);
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--primary-hover-color);
+}
+
+header {
+  padding: 1rem;
+}
+
+section > header > div {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+section > header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input[type="text"] {
+  background-color: var(--secondary-black-color);
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--white-color);
+  border-radius: 5px;
+  color: var(--white-color);
+}
+
+#mensaje {
+  color: var(--danger);
+  height: 1rem; /* Fix para que no se mueva el formulario. */
+}
+
+.centrado {
+  display: grid;
+  place-items: center;
+}
+
+#todos {
+  flex-grow: 1;
+  padding: 1rem;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  background-color: var(--primary-color);
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  border: 1px solid var(--primary-color);
+  cursor: pointer;
+
+  transition: background .4s ease;
+}
+
+button:hover {
+  background-color: var(--primary-hover-color);
+  border: 1px solid var(--primary-hover-color);
+}
