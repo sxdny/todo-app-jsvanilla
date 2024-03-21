@@ -1,6 +1,9 @@
 let inputTodo = document.getElementById('inputTodo');
 let createTodoButton = document.getElementById('createTodoButton');
 let todos = document.getElementById('todos');
+let todoCounter = 0;
+
+let flagNoHayTareas = false;
 
 createTodoButton.addEventListener('click', () => {
 
@@ -9,38 +12,53 @@ createTodoButton.addEventListener('click', () => {
     return;
   }
 
+  todoCounter++;
+
   // Creamos el elemento li
   let todo = document.createElement('li');
+  todo.classList.add("todo");
+  todo.id = `todo-${todoCounter}`;
 
   let checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
 
-  let todoTitle = document.createElement('p');
-  todoTitle.classList.add('todo-title');
-  todoTitle.innerText = inputTodo.value;
+  let todoName = document.createElement('input');
+  todoName.type = 'text';
+  todoName.classList.add('todo-todoName');
+  todoName.value = inputTodo.value;
+  todoName.oninput = () => adjustWidthInput(todoName);
+  todoName.onblur = () => {
+    if (todoName.value === '') {
+      console.log("Se elimina el input...")
+      todoName.parentElement.remove();
+    }
 
-  let deleteButton = document.createElement('button');
-  deleteButton.innerText = 'Eliminar';
-
-  let editButton = document.createElement('button');
-  editButton.innerText = 'Editar';
+    // Actualizamos el estado de el <ul> de los todos
+    checkTodosList();
+  }
 
   todo.appendChild(checkbox);
-  todo.appendChild(todoTitle); // Wrap todoTitle inside a TextNode
-  todo.appendChild(deleteButton);
-  todo.appendChild(editButton);
-
+  todo.appendChild(todoName);
+  
   todos.appendChild(todo);
+
+  console.log("¡Elemento creado correctamente!")
+  console.log(todo);
+  console.log(todos)
 
   clearInputs();
   checkTodosList();
 
 })
 
+function adjustWidthInput(elemento) {
+  elemento.style.width = ((elemento.value.length + 1) * 8) + 'px';
+}
+
 function checkInput() {
 
   let mensaje = document.getElementById('mensaje');
-  let regularExpression = /^[a-zA-Z0-9]+$/;
+  let regularExpression = /^[a-zA-Z0-9 ]+$/; // Para permitir espacios
 
   if (inputTodo.value === '') {
     mensaje.innerText = 'Por favor, introduce un nombre para la tarea...';
@@ -63,12 +81,16 @@ function checkInput() {
 }
 
 function checkTodosList() {
+  // Usando la flag evitamos que se cree el mensaje de nuevo si ya está creado y
+  // los mensajes de error
   if (todos.children.length === 0) {
+    flagNoHayTareas = true;
     todos.classList.add('centrado')
-    todos.innerHTML = '<p> Aún no hay tareas creadas. Crea una nueva tarea para verlas aquí. </p>';
-  } else {
+    todos.innerHTML = '<p class="message"> Aún no hay tareas creadas. Crea una nueva tarea para verlas aquí. </p>';
+  } else if (flagNoHayTareas) {
+    flagNoHayTareas = false;
     todos.classList.remove('centrado')
-    let p = document.querySelector('ul p');
+    let p = document.querySelector('p.message');
     p.remove();
   }
 }
