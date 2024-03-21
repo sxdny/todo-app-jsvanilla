@@ -74,24 +74,34 @@ input[type="text"] {
   height: 1rem; /* Fix para que no se mueva el formulario. */
 }
 
-.centrado {
-  display: grid;
-  place-items: center;
+.message {
+  color: var(--secondary-color);
 }
 
-#todos {
+.danger {
+  color: var(--danger);
+}
+
+.completada {
+  color: var(--primary-hover-color);
+}
+
+#todos, #todosCompletados {
   flex-grow: 1;
-  padding: 1rem;
 
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 }
 
-.todo {
+.todo, li {
   display: flex;
   gap: 1rem;
+  padding: 0.5rem 1rem;
   align-items: center;
+}
+
+section > h1 {
+  padding: 1rem;
 }
 
 .todo > input[type="text"] {
