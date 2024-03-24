@@ -193,3 +193,20 @@ span {
 .custom-checkbox.checked {
   background-color: var(--primary-color);
 }
+
+@media screen and (max-width: 600px) {
+  .divTareas {
+    flex-direction: column;
+  }
+
+  .actions {
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+  }
+
+  .actions > * {
+    width: 100%;
+  }
+  
+}

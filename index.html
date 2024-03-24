@@ -16,10 +16,10 @@
 
     <section>
       <header>
-        <div>
+        <div class="actions">
           <input type="text" id="inputTodo" placeholder="Nombre de la tarea" />
           <select name="" id="todoTypeSelector">
-            <option value="">Selecciona un tipo de tarea</option>
+            <option value="0">Seleccione un tipo de tarea</option>
             <option value="1">Importante</option>
             <option value="2">Normal</option>
             <option value="3">Baja</option>
@@ -31,8 +31,11 @@
 
       <div class="divTareas">
         <h1>Tareas</h1>
-        <select disabled name="filterTodos" id="filterTodos">
-          <option value="">Filtrar por...</option>
+        <select name="filterTodos" id="filterTodos">
+          <option value="0">Todas</option>
+          <option value="1">Importantes</option>
+          <option value="2">Normales</option>
+          <option value="3">Bajas</option>
         </select>
       </div>
       <ul id="todos"></ul>
